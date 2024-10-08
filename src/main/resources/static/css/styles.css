@@ -35,10 +35,16 @@ table {
 }
 
 .polish-sample{
-    height: 40px;
-    width: 40px;
+    height: 45px;
+    width: 45px;
     margin:0;
     padding:0;
+    border-radius: 15px;
 }
 
+.boxBorder{
+    border-style:solid;
+    border-width:thick;
+    border-color: rgb(255, 0, 111);
+}
 
