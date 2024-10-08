@@ -27,7 +27,7 @@ public class SpaDayController {
     @GetMapping(value="")
     @ResponseBody
     public String customerForm () {
-        String html = "<form method = 'post'>" +
+        String html = "<form action='/menu' method = 'post'>" +     // BONUS MISSION #3: Routing path to localhost:8080/menu by form action='/menu'
                 "Name: <br>" +
                 "<input type = 'text' name = 'name'>" +
                 "<br>Skin type: <br>" +
@@ -41,13 +41,15 @@ public class SpaDayController {
                 "<select name = 'manipedi'>" +
                 "<option value = 'manicure'>Manicure</option>" +
                 "<option value = 'pedicure'>Pedicure</option>" +
+                "<option value = 'both'>Both</option>" +            // BONUS MISSION #2: Allow both Manicure & Pedicure
                 "</select><br>" +
                 "<input type = 'submit' value = 'Submit'>" +
                 "</form>";
         return html;
     }
 
-    @PostMapping(value="")
+    // BONUS MISSION #3: Routing path to localhost:8080/menu through @PostMapping(value="/menu")
+    @PostMapping(value="/menu")
     public String spaMenu(@RequestParam String name, @RequestParam String skintype, @RequestParam String manipedi, Model model) {
 
         ArrayList<String> facials = new ArrayList<>();
@@ -62,6 +64,24 @@ public class SpaDayController {
                 appropriateFacials.add(facials.get(i));
             }
         }
+
+        model.addAttribute("appropriateFacials", appropriateFacials);
+        model.addAttribute("name", name);
+        model.addAttribute("skintype", skintype);
+        model.addAttribute("manipedi", manipedi);
+
+
+        // BONUS MISSION #1:
+        ArrayList<String> nailPolishChoices = new ArrayList<>();
+        nailPolishChoices.add("red");
+        nailPolishChoices.add("blue");
+        nailPolishChoices.add("pink");
+        nailPolishChoices.add("coral");
+        nailPolishChoices.add("yellow");
+        nailPolishChoices.add("green");
+        nailPolishChoices.add("purple");
+
+        model.addAttribute("nailPaintChoices", nailPolishChoices);
 
         return "menu";
     }
