@@ -6,7 +6,7 @@ import java.util.Date;
 public class User {
 
     private int id;                      // Studio Bonus Mission #1
-    private int nextId = 1;              // Studio Bonus Mission #1
+    private static int nextId = 1;              // Studio Bonus Mission #1
 
     private String userName;
     private String email;
