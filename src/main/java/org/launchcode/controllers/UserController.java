@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 public class UserController {
 
-    // will be available at localhost:8080/user (will get path from @RequestMapping on line 12)
+    // will be available at localhost:8080/user (gets path from @RequestMapping on line 10)
     @GetMapping("")
     public String displayAddUserForm(){
         return "/user/add";
@@ -20,7 +20,6 @@ public class UserController {
     @PostMapping("")
     public String processAddUserForm(Model model, @ModelAttribute User user, String verify){
         if(!user.getPassword().contains(verify)){
-            System.out.println("Verifying if the passwords match");
             model.addAttribute("username", user.getUserName());
             model.addAttribute("email", user.getEmail());
             model.addAttribute("errorMsg", "Passwords do not match! Please enter correct passwords!");
