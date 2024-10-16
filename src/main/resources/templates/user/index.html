@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    <link href="../../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" />
+</head>
+<body>
+    <h3 th:text="'Welcome ' + ${userObj.userName} + ' !'"></h3>
+    <a th:href= "@{/}" >Click to shop Spa Services</a>
+
+<div>
+    <h3> List of Users </h3>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td>User Name</td>
+        </tr>
+        </thead>
+        <tr th:block th:each="aUser : ${users}">
+            <td>
+            <a th:href="@{user/details/{id}(id=${aUser.id})}" th:text="${aUser.userName}"> </a>
+            </td>
+        </tr>
+    </table>
+
+    <a href= "/user"> Click to add more Users </a>
+</div>
+</body>
+</html>
